@@ -1,0 +1,5 @@
+Name: AntiLooter
+Warning: You have %time seconds to loot the items before other players can take them!
+FreeLoot: Anyone can now loot your items if you have not already done so!
+ItemPickUpDelayInSeconds: 10
+AlowFactionMemersLooting: false

@@ -1,0 +1,7 @@
+name: AntiLootSteal
+version: 1.5
+main: me.imjack.loot.Main
+softdepend: [Mcore,Factions]
+permissions:
+    anti.loot.bypass:
+        description: bypasses the looting wait
