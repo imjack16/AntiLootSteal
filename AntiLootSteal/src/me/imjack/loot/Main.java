@@ -55,7 +55,9 @@ public class Main extends JavaPlugin {
 			log.info(getDescription().getName() + " Normal mode running");
 		}
 		manager.registerEvents(new PlayerDeathListener(this), this);
-		manager.registerEvents(new MobDeathListener(this), this);
+		if (getConfig().getBoolean("AntiLootMobEnabled")) {
+			manager.registerEvents(new MobDeathListener(this), this);
+		}
 	}
 
 	public void onDisable() {
