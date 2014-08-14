@@ -1,5 +1,6 @@
 package me.imjack.loot;
 
+import java.util.List;
 import java.util.UUID;
 
 import org.bukkit.entity.Player;
@@ -7,18 +8,22 @@ import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerPickupItemEvent;
 
-public class ItemPickUpEventListener implements Listener {
+public class ItemPickUpListener implements Listener {
 
-	static Main plugin;
+	private Main plugin = Main.plugin;
 
-	public ItemPickUpEventListener(Main instance) {
-		plugin = instance;
+	public ItemPickUpListener(Main instance) {
+		this.plugin = instance;
 	}
 
 	@EventHandler
-	public void NoDrop(PlayerPickupItemEvent event) {
+	public void onItemPickup(PlayerPickupItemEvent event) {
 		Player player = event.getPlayer();
 		Boolean hasData = event.getItem().hasMetadata("AntiLoot");
+		List<String> worldNames = plugin.getConfig().getStringList("DisabledWorlds");
+		if(worldNames.contains(player.getWorld().getName())){
+			return;
+		}
 		if (hasData == true) {
 			int configtime = plugin.getConfig().getInt("ItemPickUpDelayInSeconds") * 1000;
 			if(!player.hasPermission("anti.loot.bypass")){

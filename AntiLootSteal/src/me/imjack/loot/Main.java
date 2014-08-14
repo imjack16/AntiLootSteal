@@ -14,6 +14,7 @@ public class Main extends JavaPlugin {
 	public static Main plugin;
 
 	public void onEnable() {
+		plugin = this;
 		PluginManager manager = this.getServer().getPluginManager();
 		getConfig().options().copyDefaults(true);
 		saveConfig();
@@ -22,7 +23,6 @@ public class Main extends JavaPlugin {
 			Metrics metrics = new Metrics(this);
 			metrics.start();
 		} catch (IOException e) {
-			// Failed to submit the stats :-(
 		}
 		try {
 			Metrics metrics = new Metrics(this);
@@ -45,19 +45,20 @@ public class Main extends JavaPlugin {
 		if (getConfig().getBoolean("AlowFactionMemersLooting")) {
 			if (getServer().getPluginManager().getPlugin("mcore") != null && getServer().getPluginManager().getPlugin("Factions") != null) {
 				log.info(getDescription().getName() + " Factions mode enabled");
-				manager.registerEvents(new FactionsItemPickUpEventListener(this), this);
+				manager.registerEvents(new FactionsItemPickUpListener(this), this);
 			} else {
 				log.info(getDescription().getName() + " Factions or Mcore could not be found");
-				manager.registerEvents(new ItemPickUpEventListener(this), this);
+				manager.registerEvents(new ItemPickUpListener(this), this);
 			}
 		} else {
-			manager.registerEvents(new ItemPickUpEventListener(this), this);
+			manager.registerEvents(new ItemPickUpListener(this), this);
 			log.info(getDescription().getName() + " Normal mode running");
 		}
-		manager.registerEvents(new PlayerDeathEventListener(this), this);
+		manager.registerEvents(new PlayerDeathListener(this), this);
+		manager.registerEvents(new MobDeathListener(this), this);
 	}
 
 	public void onDisable() {
-
+		plugin = null;
 	}
 }

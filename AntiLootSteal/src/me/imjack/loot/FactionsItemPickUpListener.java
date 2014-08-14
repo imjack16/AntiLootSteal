@@ -10,16 +10,16 @@ import org.bukkit.event.player.PlayerPickupItemEvent;
 
 import com.massivecraft.factions.entity.UPlayer;
 
-public class FactionsItemPickUpEventListener implements Listener {
+public class FactionsItemPickUpListener implements Listener {
 
-	static Main plugin;
+	private Main plugin = Main.plugin;
 
-	public FactionsItemPickUpEventListener(Main instance) {
-		plugin = instance;
+	public FactionsItemPickUpListener(Main instance) {
+		this.plugin = instance;
 	}
 
 	@EventHandler
-	public void NoDrop(PlayerPickupItemEvent event) {
+	public void onFactionLoot(PlayerPickupItemEvent event) {
 		Player player = event.getPlayer();
 		Boolean hasData = event.getItem().hasMetadata("AntiLoot");
 		if (hasData == true) {
