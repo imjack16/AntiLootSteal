@@ -1,7 +1,33 @@
 name: AntiLootSteal
-version: 1.6
+version: 2.2
 main: me.imjack.loot.Main
 softdepend: [Mcore,Factions]
 permissions:
     anti.loot.bypass:
         description: bypasses the looting wait
+commands:
+    looter:
+        description: change antilooter settings
+        aliases: [loot, antilooter, al]
+        permission: anti.loot.command
+        permission-message: '§cYou do not have permission to use this command'
+        usage: /<command>
+permissions:
+    anti.loot.command:
+        description: Allows you to use the loot command
+        default: true
+    anti.loot.toggle:
+        description: Allows you to use the loot command toggle argument
+        default: true
+    anti.loot.list:
+        description: Allows you to use the loot command list argument
+        default: true
+    anti.loot.add:
+        description: Allows you to use the loot command add argument
+        default: true
+    anti.loot.delete:
+        description: Allows you to use the loot command delete argument
+        default: true
+    anti.loot.bypass:
+        description: Allows you to bypass antiloot protection
+        default: false

@@ -1,11 +1,23 @@
-Name: AntiLooter
-Warning: You have %time seconds to loot the items before other players can take them!
-FreeLoot: Anyone can now loot your items if you have not already done so!
+ShowWarnMessages: true
+ShowFreeLootMessage: true
+ProtectPlayerLoot: true
+ProtectMobLoot: true
+HookNewFactions: false
+HookFactionsUUID: false
+Warning: '&7[&6AntiLooter&7] &cYou have %time seconds to loot the items before other players can take them!'
+FreeLoot: '&7[&6AntiLooter&7] &aAnyone can now loot your items if you have not already done so!'
+ToggleMessage: '&7[&6AntiLooter&7] &aYour looting protection is now %status.'
+FriendMessage: '&7[&6AntiLooter&7] &aCurrent friends added: %friends.'
+FriendAdded: '&7[&6AntiLooter&7] &aThe player has been added to your friend list'
+FriendDeleted: '&7[&6AntiLooter&7] &cThe Player has been removed from your friends list.'
+NoFriends: '&7[&6AntiLooter&7] &cYou dont have any friends to delete.'
+FriendNotOnline: '&7[&6AntiLooter&7] &cThat player isnt online'
+FriendExisting: '&7[&6AntiLooter&7] &cThat player isnt on your friends list'
+FriendDupe: '&7[&6AntiLooter&7] &cThat player is already on your friends list'
+MaxFriendMessage: '&7[&6AntiLooter&7] &cYour friends list is full'
 ItemPickUpDelayInSeconds: 10
-AlowFactionMemersLooting: false
-AntiLootMobEnabled: true
+MaxFriends: 1
 #AKA Warning message & FreeLoot Message
-showMessages: true
 DisabledWorlds:
 - MinigameWorld
 - SimonsWorld
