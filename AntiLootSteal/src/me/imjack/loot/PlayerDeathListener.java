@@ -1,8 +1,5 @@
 package me.imjack.loot;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -26,24 +23,23 @@ public class PlayerDeathListener implements Listener {
 				return;
 			}
 			final Player killer = event.getEntity().getPlayer().getKiller();
-			if(plugin.getPlayerData().containsKey(killer.getUniqueId())){
-				if(!plugin.getPlayerData().get(killer.getUniqueId()).isToggle()){
+			if (plugin.getPlayerData().containsKey(killer.getUniqueId())) {
+				if (!plugin.getPlayerData().get(killer.getUniqueId()).isToggle()) {
 					return;
 				}
 			}
-			List<ItemStack> itemList = new ArrayList<ItemStack>();
 			for (ItemStack stack : event.getDrops()) {
-				itemList.add(stack);
-				player.getWorld()
-						.dropItemNaturally(player.getLocation(), stack)
-						.setMetadata(
-								"AntiLoot",
-								new FixedMetadataValue(plugin, killer.getUniqueId() + " "
-										+ String.valueOf(System.currentTimeMillis())));
+				if (stack != null) {
+					player.getWorld()
+							.dropItemNaturally(player.getLocation(), stack)
+							.setMetadata(
+									"AntiLoot",
+									new FixedMetadataValue(plugin, killer.getUniqueId() + " "
+											+ String.valueOf(System.currentTimeMillis())));
+				}
 			}
 			event.getDrops().clear();
 			if (plugin.warnMessageEnabled) {
-				System.out.println("pass");
 				killer.sendMessage(plugin.warnMessage.replaceAll("%time", String.valueOf(plugin.pickupTime)));
 			}
 			if (plugin.warnFreeLootMessageEnabled) {

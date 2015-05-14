@@ -1,8 +1,5 @@
 package me.imjack.loot;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -30,16 +27,16 @@ public class MobDeathListener implements Listener {
 					return;
 				}
 			}
-			List<ItemStack> itemList = new ArrayList<ItemStack>();
 			for (ItemStack stack : event.getDrops()) {
-				itemList.add(stack);
-				event.getEntity()
-						.getWorld()
-						.dropItemNaturally(event.getEntity().getLocation(), stack)
-						.setMetadata(
-								"AntiLoot",
-								new FixedMetadataValue(plugin, player.getUniqueId() + " "
-										+ String.valueOf(System.currentTimeMillis())));
+				if (stack != null) {
+					event.getEntity()
+							.getWorld()
+							.dropItemNaturally(event.getEntity().getLocation(), stack)
+							.setMetadata(
+									"AntiLoot",
+									new FixedMetadataValue(plugin, player.getUniqueId() + " "
+											+ String.valueOf(System.currentTimeMillis())));
+				}
 			}
 			event.getDrops().clear();
 			if (plugin.warnMessageEnabled) {
