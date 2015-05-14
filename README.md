@@ -1,4 +1,4 @@
 AntiLootSteal
 =============
 
-Download at http://dev.bukkit.org/bukkit-plugins/antiloot-steal/
+http://www.spigotmc.org/resources/antilootsteal.587/
